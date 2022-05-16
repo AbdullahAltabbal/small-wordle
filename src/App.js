@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Wordle from "./components/Wordle";
 
 import styled from "styled-components";
 
@@ -22,9 +23,7 @@ const Header = styled.div`
   }
 `;
 
-const Main = styled.div`
-  flex: 1;
-`;
+const Main = styled.div``;
 
 function App() {
   const [solution, setSolution] = useState(null);
@@ -42,7 +41,7 @@ function App() {
       <Header>
         <h1>Wordle</h1>
       </Header>
-      <Main></Main>
+      <Main>{solution && <Wordle solution={solution} />}</Main>
     </Wrapper>
   );
 }
