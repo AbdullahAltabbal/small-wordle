@@ -4,11 +4,13 @@ const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(["hallo", "again"]);
   const [isCorrect, setIsCorrect] = useState(false);
 
   //    format a guess into an array of letter objects
-  const formatGuess = () => {};
+  const formatGuess = () => {
+    console.log("formatiing", currentGuess);
+  };
 
   // add a new guess to the guesses state
   // update the isCorrect state if the guess is correct
@@ -17,6 +19,13 @@ const useWordle = (solution) => {
 
   // handle keyup
   const handelKeyup = ({ key }) => {
+    if (key === "Enter") {
+      if (turn > 5) return;
+      if (history.includes(currentGuess)) return;
+      if (currentGuess.length !== 5) return;
+
+      formatGuess();
+    }
     if (key === "Backspace") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
